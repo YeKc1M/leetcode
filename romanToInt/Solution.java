@@ -71,12 +71,23 @@ public class Solution{
         }
         return res;
     }
-    public int romanToInt1(String s){
+    public int romanToInt1(String s){//reverse traversing s
         if(s.length()==0) return 0;
-        for(int i=s.length()-1;i>=0;i--){
-            //
-        }
+        int i=s.length()-1;
         int res=0;
+        for(i=s.length()-1;i>0;i--){
+            int current=singleRomanToInt(s.charAt(i));
+            int before=singleRomanToInt(s.charAt(i-1));
+            if(current>before){
+                res+=current-before;
+                i--;
+            }else{
+                res+=current;
+            }
+        }
+        if(i==0){
+            res+=singleRomanToInt(s.charAt(0));
+        }
         return res;
     }
     public static int singleRomanToInt(char romanChar){
@@ -91,6 +102,6 @@ public class Solution{
         return res;
     }
     public static void main(String[] args){
-        System.out.println("hello world!");
+        //System.out.println("hello world!");
     }
 }
