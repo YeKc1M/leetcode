@@ -34,6 +34,26 @@ public class Solution {
         }
         return res;
     }
+    //backtracing
+    public List<String> letterCombinations1(String digits){
+        List l=new LinkedList<>();
+        if(digits.length()!=0){
+            backtrack(l, "", digits);
+        }
+        return l;
+    }
+    //backtracing
+    private void backtrack(List l, String combination, String digits){
+        if(digits.length()==0){
+            l.add(combination);
+        }else{
+            List nexts=numToLetters(digits.charAt(0));
+            Iterator itr=nexts.iterator();
+            while(itr.hasNext()){
+                backtrack(l, combination+(String)itr.next(), digits.substring(1, digits.length()));
+            }
+        }
+    }
     public static List<String> numToLetters(char num){
         List l=new LinkedList<>();
         switch(num){
