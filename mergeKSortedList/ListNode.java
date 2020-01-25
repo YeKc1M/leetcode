@@ -13,6 +13,26 @@ class Solution {
         int length=lists.length;
         return mergeTwo(Arrays.copyOfRange(lists, 0, length/2), Arrays.copyOfRange(lists, length/2, length));
     }
+    //iteration 2-way merge
+    public ListNode mergeKLists2(ListNode[] lists){
+        int len = lists.length;
+        if (len == 0) {
+            return null;
+        }    
+        // 将n个链表以中间为对称，合并，即合并 
+        while(len>1) {
+            for (int i=0; i<len/2; i++) {
+                lists[i] = mergeTwoLists(lists[i], lists[len-1-i]);
+            }
+            len = (len+1)/2;
+        }
+        return lists[0];
+        /*
+        作者：lin-jian-you-xue
+        链接：https://leetcode-cn.com/problems/merge-k-sorted-lists/solution/luo-ji-fei-chang-jian-dan-de-javati-jie-shi-jian-j/
+        来源：力扣（LeetCode）
+        著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。*/
+    }
     private ListNode mergeTwo(ListNode[] list1, ListNode[] list2){
         if(list1.length==0) return list2[0];
         if(list2.length==0) return list1[0];
