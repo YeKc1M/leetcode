@@ -56,19 +56,49 @@ public class Solution {
         }
         return -1;
     }
+    //answer provided by leetcode 92%-32%
+    public int search1(int[] nums, int target){
+        //find rotated index(smallest one)
+        int left=0, right=nums.length, medium=(left+right)/2;
+        int mIndex=0;
+        while(left<=medium&&medium<right){
+            if(nums[medium]>nums[(medium+1)%nums.length]){
+                mIndex=(medium+1)%nums.length;
+                break;
+            }
+            if(nums[left]<nums[medium]){
+                left=medium+1;
+                medium=(left+right)/2;
+            }
+            else{
+                right=medium;
+                medium=(left+right)/2;
+            }
+        }
+        int res=-1;
+        res=sortedSearch(Arrays.copyOfRange(nums, 0, mIndex), target);
+        if(res!=-1) return res;
+        res=sortedSearch(Arrays.copyOfRange(nums, mIndex, nums.length), target);
+        return res==-1? -1: res+mIndex;
+    }
     public static void main(String[] args){
         System.out.println("search in rotated sorted array");
-        test();
+        //pass normal solution
+        //test();
         //test1();
 
         //sortedSearch() passes
         //testSortedSearch();
         //testSortedSearch1();
+
+        //pass by leetcode
+        //test2();
+        //test3();
     }
     private static void test(){
         int[] arr={3};
         Solution s=new Solution();
-        System.out.println(s.search(arr, 1));
+        System.out.println(s.search(arr, 3));
     }
     private static void test1(){
         int[] arr={4,5,6,7,0,1,2};
@@ -89,6 +119,18 @@ public class Solution {
         Solution s=new Solution();
         for(int i=0;i<9;i++){
             System.out.println(s.sortedSearch(arr, i));
+        }
+    }
+    private static void test2(){
+        int[] arr={3};
+        Solution s=new Solution();
+        System.out.println(s.search1(arr, 3));
+    }
+    private static void test3(){
+        int[] arr={4,5,6,7,0,1,2};
+        Solution s=new Solution();
+        for(int i=0;i<9;i++){
+            System.out.println(s.search1(arr, i));
         }
     }
 }
