@@ -29,12 +29,38 @@ public class Solution {
         }
         return area;
     }
+    //double pointer 49%-28%
+    public int trap1(int[] height){
+        int area=0;
+        int leftMax=0,rightMax=0,left=0,right=height.length-1;
+        while(left<right){
+            if(height[left]<height[right]){
+                if(height[left]<leftMax){
+                    area+=(leftMax-height[left++]);
+                }else{
+                    leftMax=height[left++];
+                }
+            }else{
+                if(height[right]<rightMax){
+                    area+=(rightMax-height[right--]);
+                }else{
+                    rightMax=height[right--];
+                }
+            }
+        }
+        return area;
+    }
     public static void main(String[] args){
         System.out.println("trapping rain water");
         //test();
+        test1();
     }
     public static void test(){
         int[] height={0,1,0,2,1,0,1,3,2,1,2,1};
         System.out.println(new Solution().trap(height));
+    }
+    public static void test1(){
+        int[] height={0,1,0,2,1,0,1,3,2,1,2,1};
+        System.out.println(new Solution().trap1(height));
     }
 }
