@@ -31,6 +31,34 @@ public class Solution {
             }
         }else return false;
     }
+    //dynamic programming 80%-90%
+    public boolean isMatch1(String s, String p){
+        int sLength=s.length(), pLength=p.length();
+        boolean[] b=new boolean[pLength+1];
+        b[pLength]=true;
+        for(int i=pLength-1;i>=0;i--){
+            b[i]= p.charAt(i)=='*'? b[i+1]: false;
+        }
+        for(int i=sLength-1; i>=0; i--){
+            boolean bool=b[pLength];
+            for(int j=pLength-1; j>=0; j--){
+                if(s.charAt(i)==p.charAt(j)||p.charAt(j)=='?'){
+                    boolean temp=b[j];
+                    b[j]=bool;
+                    bool=temp;
+                }else if(p.charAt(j)=='*'){
+                    boolean temp=b[j];
+                    b[j]=b[j]||b[j+1];
+                    bool=temp;
+                }else{
+                    bool=b[j];
+                    b[j]=false;
+                }
+            }
+            b[pLength]=false;
+        }
+        return b[0];
+    }
     public static void main(String[] args){
         System.out.println("wildcard matching");
         test();
