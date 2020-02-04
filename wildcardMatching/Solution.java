@@ -8,6 +8,7 @@ public class Solution {
                 indexS++;indexP++;
             }else if(p.charAt(indexP)=='*'){
                 //star match
+                while(indexP<p.length()-1&&p.charAt(indexP+1)=='*') indexP++;
                 res=isMatch(s.substring(indexS), p.substring(indexP+1, p.length()))||
                     isMatch(s.substring(indexS+1, s.length()), p.substring(indexP));
                 return res;
