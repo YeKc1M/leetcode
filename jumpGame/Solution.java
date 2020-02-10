@@ -16,6 +16,22 @@ public class Solution {
         }while(mIndex!=temp);
         return false;
     }
+    //dynamic programming 13%-19%
+    public boolean canJump1(int[] nums){
+        if(nums.length==0) return true;
+        boolean[] isGood=new boolean[nums.length];
+        isGood[nums.length-1]=true;
+        for(int i=nums.length-2;i>=0;i--){
+            isGood[i]=false;
+            for(int j=i+1;j<=Math.min(nums.length-1, i+nums[i]);j++){
+                if(isGood[j]){
+                    isGood[i]=true;
+                    break;
+                }
+            }
+        }
+        return isGood[0];
+    }
     public static void main(String[] args){
         System.out.println("jump game");
         test();
