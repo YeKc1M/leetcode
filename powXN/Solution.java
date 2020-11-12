@@ -1,3 +1,5 @@
+package powXN;
+
 public class Solution {
     //normal solution... StackOverFlow
     public double myPow(double x, int n) {

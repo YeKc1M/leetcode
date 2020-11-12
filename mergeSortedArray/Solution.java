@@ -1,3 +1,5 @@
+package mergeSortedArray;
+
 public class Solution {
     public void merge1(int[] nums1, int m, int[] nums2, int n) {
         int p1 = m - 1;

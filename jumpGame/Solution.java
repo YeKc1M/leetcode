@@ -1,3 +1,5 @@
+package jumpGame;
+
 public class Solution {
     //normal solution 62%-93%
     public boolean canJump(int[] nums) {

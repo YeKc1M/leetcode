@@ -1,3 +1,5 @@
+package removeNthFromEnd;
+
 public class Solution {
     //normal solution
     public ListNode removeNthFromEnd(ListNode head, int n) {

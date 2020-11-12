@@ -1,3 +1,5 @@
+package reverse;
+
 public class Solution{
     public int reverse(int x){
         int r=0;

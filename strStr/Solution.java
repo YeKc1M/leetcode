@@ -1,3 +1,5 @@
+package strStr;
+
 public class Solution {
     //normal solution
     public int strStr(String haystack, String needle) {

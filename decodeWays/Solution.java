@@ -1,3 +1,5 @@
+package decodeWays;
+
 class Solution {
     int res;
     //normal solution timeout

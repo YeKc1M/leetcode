@@ -1,3 +1,5 @@
+package maxArea;
+
 //container-with-most-water
 public class Solution{
     public int maxArea(int[] height){//normal solution

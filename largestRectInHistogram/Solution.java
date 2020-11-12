@@ -1,3 +1,5 @@
+package largestRectInHistogram;
+
 public class Solution {
     //normal solution memory out
     public int largestRectangleArea(int[] heights){

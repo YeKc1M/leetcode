@@ -1,3 +1,5 @@
+package sqrtx;
+
 public class Solution {
     //normal solution timeout
     public int mySqrt1(int x) {

@@ -1,3 +1,5 @@
+package climbingStairs;
+
 public class Solution {
     int count=0;
     //backtrace timeout

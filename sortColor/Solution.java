@@ -1,3 +1,5 @@
+package sortColor;
+
 public class Solution {
     //normal solution 100% 5%
     public void sortColors(int[] nums) {

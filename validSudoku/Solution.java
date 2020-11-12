@@ -1,3 +1,5 @@
+package validSudoku;
+
 import java.util.HashMap;
 
 public class Solution {

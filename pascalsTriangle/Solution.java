@@ -1,3 +1,4 @@
+package pascalsTriangle;
 
 import java.util.Arrays;
 

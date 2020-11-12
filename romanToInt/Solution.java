@@ -1,3 +1,5 @@
+package romanToInt;
+
 public class Solution{
     public int romanToInt(String s){//normal solution
         if(s.length()==0){

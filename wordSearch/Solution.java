@@ -1,3 +1,5 @@
+package wordSearch;
+
 import java.util.Stack;
 
 class Solution {

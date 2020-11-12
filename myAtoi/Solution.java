@@ -1,3 +1,5 @@
+package myAtoi;
+
 //regular expression match
 public class Solution{
     public int myAtoi(String str){

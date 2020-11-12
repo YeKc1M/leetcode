@@ -1,3 +1,5 @@
+package wildcardMatching;
+
 public class Solution {
     //normal solution timeout
     public boolean isMatch(String s, String p) {

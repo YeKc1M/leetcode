@@ -1,3 +1,5 @@
+package firstAndLastInSortedArr;
+
 import java.util.Arrays;
 
 public class Solution {

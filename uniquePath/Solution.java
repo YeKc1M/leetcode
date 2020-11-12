@@ -1,3 +1,5 @@
+package uniquePath;
+
 public class Solution {
     //Math solution 100% 16%
     public int uniquePaths(int m, int n) {

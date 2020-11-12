@@ -1,3 +1,5 @@
+package searchInRotatedSortedArray;
+
 import java.util.Arrays;
 
 public class Solution {

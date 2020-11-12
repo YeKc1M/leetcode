@@ -1,3 +1,5 @@
+package bestTimeStockII;
+
 class Solution {
     public int maxProfit(int[] prices) {
         int res=0;

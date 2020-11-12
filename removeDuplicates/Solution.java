@@ -1,3 +1,5 @@
+package removeDuplicates;
+
 import java.util.Arrays;
 
 public class Solution{

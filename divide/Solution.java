@@ -1,3 +1,5 @@
+package divide;
+
 public class Solution {
     /*
     作者：luca-zhao

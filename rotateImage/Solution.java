@@ -1,3 +1,5 @@
+package rotateImage;
+
 public class Solution {
     //normal solution 100% 67%
     public void rotate(int[][] matrix) {

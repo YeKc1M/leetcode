@@ -1,3 +1,5 @@
+package countAndSay;
+
 public class Solution {
     //normal solution 7%-5%
     public String countAndSay(int n) {
