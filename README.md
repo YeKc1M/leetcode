@@ -1,3 +1,9 @@
+### removekdigits
+
+no.402
+
+https://leetcode-cn.com/problems/remove-k-digits/
+
 ### sortarraybyparityii
 
 no.922
