@@ -21,3 +21,9 @@ https://leetcode-cn.com/problems/sort-array-by-parity-ii/
 no.1122
 
 https://leetcode-cn.com/problems/relative-sort-array/
+
+### increasingdecreasingstring
+
+no.1370
+
+https://leetcode-cn.com/problems/increasing-decreasing-string/
