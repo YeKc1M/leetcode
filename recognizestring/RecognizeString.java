@@ -12,6 +12,11 @@ public class RecognizeString {
 
 class Solution {
     public String reorganizeString(String S) {
+        StringBuilder builder = new StringBuilder();
+        return builder.toString();
+    }
+    /* wrong solution
+    public String reorganizeString(String S) {
         if(S.length()<=1) return S;
 
         int[] count = new int[26];
@@ -52,7 +57,7 @@ class Solution {
             l++;
         }
         return builder.toString();
-    }
+    }*/
     public static void main(String[] args){
         System.out.println(new Solution()
         .reorganizeString("blflxll"));
