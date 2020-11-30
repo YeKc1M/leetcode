@@ -16,6 +16,12 @@ no.454
 
 https://leetcode-cn.com/problems/4sum-ii/solution/si-shu-xiang-jia-ii-by-leetcode-solution/
 
+### recognizestring
+
+no.767
+
+https://leetcode-cn.com/problems/reorganize-string/
+
 ### sortarraybyparityii
 
 no.922
