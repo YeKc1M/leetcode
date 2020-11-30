@@ -1,6 +1,10 @@
 package recognizestring;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.Map.Entry;
 
 public class RecognizeString {
     public static void main(String[] args){
@@ -13,6 +17,44 @@ public class RecognizeString {
 class Solution {
     public String reorganizeString(String S) {
         StringBuilder builder = new StringBuilder();
+        TreeMap<Character, Integer> map = new TreeMap<>();
+        for(int i=0; i<S.length(); i++){
+            map.put(S.charAt(i), map.getOrDefault(S.charAt(i), 0) + 1);
+        }
+
+        Object[] entryArr = map.entrySet().toArray();
+        Arrays.sort(entryArr, new Comparator<Object>() {
+
+            @Override
+            public int compare(Object o1, Object o2) {
+                Entry entry1 = (Entry)o1, entry2 = (Entry)o2;
+                return (int)entry1.getValue() - (int)entry2.getValue();
+            }
+        });
+
+        int l = 0, r = 1;
+        do{
+            Entry lentry = (Entry)entryArr[l], rentry = (Entry)entryArr[r];
+            builder.append(lentry.getKey());
+            builder.append(rentry.getKey());
+            lentry.setValue((int)lentry.getValue() - 1);
+            rentry.setValue((int)rentry.getValue() - 1);
+            //move l
+            if((l > 0) && (int)lentry.getValue() == (int)((Entry)entryArr[l - 1]).getValue()){
+                l--;
+            }else if((int)lentry.getValue() < (int)((Entry)entryArr[l + 1]).getValue()){
+                l++;
+                if(l == r){
+                    r++;
+                }
+            }
+            //move r
+            if((l + 1 != r) && (int)rentry.getValue() == (int)((Entry)entryArr[r - 1]).getValue()){
+                r--;
+            }else if(true){
+                //
+            }
+        }while(r == entryArr.length);
         return builder.toString();
     }
     /* wrong solution
