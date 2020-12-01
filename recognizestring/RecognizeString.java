@@ -3,6 +3,8 @@ package recognizestring;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.TreeMap;
 import java.util.Map.Entry;
 
@@ -74,49 +76,46 @@ class Solution {
         if((int)((Entry)entryArr[l]).getValue() == 1) builder.append(((Entry)entryArr[l]).getKey());
         return builder.toString();
     }
-    /* wrong solution
-    public String reorganizeString(String S) {
-        if(S.length()<=1) return S;
-
+    //leetcode solution
+    public String reorganizeString1(String S) {
+        StringBuilder builder = new StringBuilder();
         int[] count = new int[26];
-        StringBuilder builder = new StringBuilder(S);
-        for(int i=0; i<builder.length(); i++){
-            count[(int)builder.charAt(i) - (int)'a']++;
+        int maxCount = 0;
+        for(int i=0; i<S.length(); i++){
+            count[S.charAt(i) - 'a']++;
+            maxCount = Math.max(maxCount, count[S.charAt(i) - 'a']);
         }
-        int maxIndex = 0;
-        for(int i=1; i<count.length; i++){
-            if(count[i] > count[maxIndex]){
-                maxIndex = i;
+        if(maxCount > (S.length() + 1)/2){
+            return "";
+        }
+        PriorityQueue<Character> queue = new PriorityQueue<>(new Comparator<Character>(){
+
+			@Override
+			public int compare(Character o1, Character o2) {
+				// TODO Auto-generated method stub
+				return count[o2 - 'a'] - count[o1 - 'a'];
+			}
+        });
+        for(int i=0; i<count.length; i++){
+            if(count[i] != 0){
+                queue.offer((char)(i + 'a'));
             }
         }
-
-        char maxChar = (char)(maxIndex + (int)'a');
-        int maxCharIndex = 0;
-        for(; maxCharIndex < builder.length() && maxChar != builder.charAt(maxCharIndex); maxCharIndex++);
-        //char firstTemp = builder.charAt(0);
-        builder.replace(maxCharIndex, maxCharIndex + 1, builder.charAt(0) + "");
-        builder.replace(0, 1, maxChar + "");
-
-        int l = 0, r = 0;
-        while(l < builder.length() - 1){
-            char lchar = builder.charAt(l);
-            r = l + 1;
-            if(lchar == builder.charAt(r)){
-                do{
-                    r++;
-                }while(r != builder.length() && lchar == builder.charAt(r));
-                if(r == builder.length()){
-                    return "";
-                }else{
-                    char temp = builder.charAt(l + 1);
-                    builder.replace(l + 1, l + 2, builder.charAt(r) + "");
-                    builder.replace(r, r + 1, temp + "");
-                }
+        do{
+            char max1 = queue.poll(), max2 = queue.poll();
+            builder.append(max1); builder.append(max2);
+            if(--count[max1 - 'a'] > 0){
+                queue.offer(max1);
             }
-            l++;
+            if(--count[max2 - 'a'] > 0){
+                queue.offer(max2);
+            }
+        }while(queue.size() > 1);
+        if(queue.size() > 0){
+            builder.append(queue.poll());
         }
         return builder.toString();
-    }*/
+    }
     public static void main(String[] args){
         System.out.println(new Solution()
         .reorganizeString("uvpzvvfvadaunvbcrwuvvvkvvocvvvvvvvvvcvccvvvvvlvvvivmdvvvvyvvgvxvvbeylvvvvxvvavvtbinvvbsevzvlvyxlvvfvtvvierumdwkvvvvvyvvvylkpvovwvwcvcvmtvjlvygkvhvyvvvkfvmbvxpiyjvvrvvjvfvvvnvvvvgdevvinvvyqvqvmvvkavydvkvviekpvvvwtbvvvhvkuvvkvvcvvjvvvqzvzvavvvosvvtevdgvvqvvvvvjeqvsxpvvzjvkvvvvkkxzvqvvvvvvvvxpvvefvvvsukdovivotvxlrsovzvdpmiqvvvvgunvvuvpavvvoafuvahpvfvacvvvdvivvluvwxaapvuvvktuvvvvdvvvvgvvvvkhvvvdpvsrvwvvlvvvvoevzhvmkvvvozvvvmvdmvvvyvopekvvyfvqkpvvfhgvvivdvvavvvmvmvvvvmqhevkpirxivvqvvvhjvnvxvcvvvgxvj"));
