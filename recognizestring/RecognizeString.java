@@ -15,6 +15,7 @@ public class RecognizeString {
 //https://leetcode-cn.com/problems/reorganize-string/
 
 class Solution {
+    //my solution
     public String reorganizeString(String S) {
         StringBuilder builder = new StringBuilder();
         TreeMap<Character, Integer> map = new TreeMap<>();
@@ -23,16 +24,20 @@ class Solution {
         }
 
         Object[] entryArr = map.entrySet().toArray();
+        if(entryArr.length == 1 && (int)((Entry)entryArr[0]).getValue() > 1) return "";
         Arrays.sort(entryArr, new Comparator<Object>() {
 
             @Override
             public int compare(Object o1, Object o2) {
                 Entry entry1 = (Entry)o1, entry2 = (Entry)o2;
-                return (int)entry1.getValue() - (int)entry2.getValue();
+                return (int)entry2.getValue() - (int)entry1.getValue();
             }
         });
 
         int l = 0, r = 1;
+        while(r < entryArr.length - 1 && (int)((Entry)entryArr[r + 1]).getValue() == (int)((Entry)entryArr[r]).getValue()){
+            r++;
+        }
         do{
             Entry lentry = (Entry)entryArr[l], rentry = (Entry)entryArr[r];
             builder.append(lentry.getKey());
@@ -40,21 +45,33 @@ class Solution {
             lentry.setValue((int)lentry.getValue() - 1);
             rentry.setValue((int)rentry.getValue() - 1);
             //move l
-            if((l > 0) && (int)lentry.getValue() == (int)((Entry)entryArr[l - 1]).getValue()){
-                l--;
-            }else if((int)lentry.getValue() < (int)((Entry)entryArr[l + 1]).getValue()){
+            if((int)lentry.getValue() < (int)((Entry)entryArr[l + 1]).getValue()){
                 l++;
                 if(l == r){
                     r++;
                 }
+            }else if((l > 0) && 
+                (int)lentry.getValue() == (int)((Entry)entryArr[l - 1]).getValue()){
+                do{
+                    l--;
+                }while((l > 0) && 
+                    (int)lentry.getValue() == (int)((Entry)entryArr[l - 1]).getValue());
             }
             //move r
-            if((l + 1 != r) && (int)rentry.getValue() == (int)((Entry)entryArr[r - 1]).getValue()){
+            if(r > l + 1 && 
+                (int)rentry.getValue() < (int)((Entry)entryArr[r - 1]).getValue()){
                 r--;
-            }else if(true){
-                //
+            }else if(r < entryArr.length - 1 && 
+                (int)rentry.getValue() == (int)((Entry)entryArr[r + 1]).getValue()){
+                do{
+                    r++;
+                }while(r < entryArr.length - 1 && 
+                    (int)((Entry)entryArr[r + 1]).getValue() == (int)((Entry)entryArr[r]).getValue());
             }
-        }while(r == entryArr.length);
+        }while(r != entryArr.length - 1 || 
+            (int)((Entry)entryArr[r]).getValue() != 0);
+        if((int)((Entry)entryArr[l]).getValue() > 1) return "";
+        if((int)((Entry)entryArr[l]).getValue() == 1) builder.append(((Entry)entryArr[l]).getKey());
         return builder.toString();
     }
     /* wrong solution
@@ -102,6 +119,6 @@ class Solution {
     }*/
     public static void main(String[] args){
         System.out.println(new Solution()
-        .reorganizeString("blflxll"));
+        .reorganizeString("uvpzvvfvadaunvbcrwuvvvkvvocvvvvvvvvvcvccvvvvvlvvvivmdvvvvyvvgvxvvbeylvvvvxvvavvtbinvvbsevzvlvyxlvvfvtvvierumdwkvvvvvyvvvylkpvovwvwcvcvmtvjlvygkvhvyvvvkfvmbvxpiyjvvrvvjvfvvvnvvvvgdevvinvvyqvqvmvvkavydvkvviekpvvvwtbvvvhvkuvvkvvcvvjvvvqzvzvavvvosvvtevdgvvqvvvvvjeqvsxpvvzjvkvvvvkkxzvqvvvvvvvvxpvvefvvvsukdovivotvxlrsovzvdpmiqvvvvgunvvuvpavvvoafuvahpvfvacvvvdvivvluvwxaapvuvvktuvvvvdvvvvgvvvvkhvvvdpvsrvwvvlvvvvoevzhvmkvvvozvvvmvdmvvvyvopekvvyfvqkpvvfhgvvivdvvavvvmvmvvvvmqhevkpirxivvqvvvhjvnvxvcvvvgxvj"));
     }
 }
